@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for lib/isPrime.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="..\prettify.css" />
+    <link rel="stylesheet" href="..\base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(..\sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="..\index.html">All files</a> / <a href="index.html">lib</a> isPrime.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>25/25</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>16/16</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">60% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>3/5</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>19/19</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">exports.isPrime = (...params) =&gt; {
+  if (params.length === 0) throw new Error('Must provide one or more paramters');
+  if (params.some(<span class="fstat-no" title="function not covered" >pa</span>ram =&gt; Number.isNaN(Number(param)))) throw new Error('One of your parameters does not evaluate to a number');
+  // JS can only safely represent and compare integers
+  // up to Number.MAX_SAFE_INTEGER: i.e., 9,007,199,254,740,991.
+  // This also covers checking if any of the parameters evaluates to Infinity
+  if (params.some(<span class="fstat-no" title="function not covered" >pa</span>ram =&gt; param &gt; Number.MAX_SAFE_INTEGER)) {
+    throw new Error('Cannot reliably test primality of numbers larger than 9,007,199,254,740,991');
+  }
+  return params.every(testPrime);
+};
+// This method tests the primality of a number by trial division.
+// In other words, it attempts to divide the test number by a series integers.
+// If any of those integers turn out to be factors of the test number,
+// then we know the test number is composite: i.e., not prime.
+// the most brute force method is to simply divide the test number by every integer
+// smaller than itself, but we can use our knowledge of number properties to greatly
+// reduce the list of potential factors that we need to test against.
+const testPrime = (num) =&gt; {
+  // num % 1 checks that num is an integer.
+  // There are no prime numbers less than 2, hence check for num &lt; 2.
+  if (num % 1 || num &lt; 2) return false;
+  // if the least factor of num is itself (aside from 1), then num is prime.
+  if (num === leastFactor(num)) return true;
+  return false;
+};
+&nbsp;
+const leastFactor = (num) =&gt; {
+  // Check if 2, 3, or 5 is a factor of num AND
+  // eliminate from future consideration all possible factors that are multiples of 2, 3, and 5.
+  for (const factor of [2, 3, 5]) {
+    if (num % factor === 0) return factor;
+  }
+  // The nest of iterators below tests if num is divisible by any number
+  // that is not a multiple of 2, 3 or 5 up to the square root of num.
+  // All factors of any positive integer (aside from the integer itself)
+  // are &lt;= the integer's square root, so we dont need to test any numbers
+  // larger than the square root of num.
+  const sqrRt = Math.sqrt(num);
+&nbsp;
+  for (let i = 7; i &lt;= sqrRt; i += 30) {
+    for (const n of [0, 4, 6, 10, 12, 16, 22, 24]) {
+      const factor = n + i;
+      if (num % factor === 0) return factor;
+    }
+  }
+  return num;
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Jan 28 2018 19:06:30 GMT-0500 (Eastern Standard Time)
+</div>
+</div>
+<script src="..\prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="..\sorter.js"></script>
+</body>
+</html>
